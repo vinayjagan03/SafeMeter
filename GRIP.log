@@ -1,0 +1,53 @@
+Sep 19, 2021 2:12:28 AM edu.wpi.grip.core.util.service.LoggingListener starting
+INFO: [PipelineRunner] Starting
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.util.service.LoggingListener terminated
+INFO: [PipelineRunner] Terminated from: STOPPING
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': SourceAddedEvent{source=CameraSource{name=Webcam 0}}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.util.service.LoggingListener starting
+INFO: [CameraSource] Starting
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': StepAddedEvent{step=Step{operation=HSV Threshold}, index=OptionalInt[0]}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': StepAddedEvent{step=Step{operation=Find Contours}, index=OptionalInt[1]}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': StepAddedEvent{step=Step{operation=Convex Hulls}, index=OptionalInt[2]}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': StepAddedEvent{step=Step{operation=Filter Contours}, index=OptionalInt[3]}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': ConnectionAddedEvent{connection=Connection{src=Step/HSV Threshold/Output, dst=Step/Find Contours/Input}}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': ConnectionAddedEvent{connection=Connection{src=Source/Webcam 0/Image, dst=Step/HSV Threshold/Input}}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': ConnectionAddedEvent{connection=Connection{src=Step/Convex Hulls/Contours, dst=Step/Filter Contours/Contours}}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': ConnectionAddedEvent{connection=Connection{src=Step/Find Contours/Contours, dst=Step/Convex Hulls/Contours}}
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': edu.wpi.grip.core.events.ProjectSettingsChangedEvent@6e5738a
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.events.EventLogger eventPosted
+INFO: Event on thread 'Project Open Thread': edu.wpi.grip.core.events.CodeGenerationSettingsChangedEvent@5cc27747
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.util.service.LoggingListener starting
+INFO: [PipelineRunner] Starting
+Sep 19, 2021 2:12:35 AM edu.wpi.grip.core.Step runPerform
+WARNING: The HSV Threshold operation did not perform correctly.
+java.lang.IllegalArgumentException: HSV Threshold needs a 3-channel input
+	at edu.wpi.grip.core.operations.composite.HSVThresholdOperation.perform(HSVThresholdOperation.java:90)
+	at edu.wpi.grip.core.metrics.Timer.time(Timer.java:102)
+	at edu.wpi.grip.core.Step.runPerform(Step.java:138)
+	at edu.wpi.grip.core.PipelineRunner.runPipeline(PipelineRunner.java:212)
+	at edu.wpi.grip.core.PipelineRunner.access$100(PipelineRunner.java:43)
+	at edu.wpi.grip.core.PipelineRunner$1.lambda$runOneIteration$1(PipelineRunner.java:91)
+	at edu.wpi.grip.core.metrics.Timer.time(Timer.java:102)
+	at edu.wpi.grip.core.PipelineRunner$1.runOneIteration(PipelineRunner.java:91)
+	at com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$Task.run(AbstractScheduledService.java:188)
+	at com.google.common.util.concurrent.Callables$4.run(Callables.java:122)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+Sep 19, 2021 2:15:25 AM edu.wpi.grip.core.util.SafeShutdown exit
+INFO: Exiting GRIP
